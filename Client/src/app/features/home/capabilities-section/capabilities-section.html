@@ -1,0 +1,13 @@
+<app-page-section [alt]="true">
+  <app-section-head eyebrow="What I build" title="Systems, not isolated demos.">
+    <p>
+      I approach AI as a system capability: grounded in software engineering, connected to data and
+      APIs, and designed around a real workflow.
+    </p>
+  </app-section-head>
+  <div class="grid grid-3">
+    @for (item of capabilities; track item.title) {
+      <app-capability-card [number]="item.number!" [title]="item.title" [description]="item.description" />
+    }
+  </div>
+</app-page-section>

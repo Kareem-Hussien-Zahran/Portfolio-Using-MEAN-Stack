@@ -1,0 +1,34 @@
+<app-api-state [loading]="project.isLoading()" [failed]="failed()" (retry)="project.reload()">
+  @if (current(); as p) {
+    <app-case-hero [project]="p" />
+    <section class="section">
+      <div class="container case-layout">
+        <app-case-toc />
+        <article>
+          <app-case-section anchor="problem" index="01" title="Problem"><p>{{ p.businessProblem }}</p></app-case-section>
+          <app-case-section anchor="requirements" index="02" title="Requirements"><app-bullet-list [items]="p.requirements" /></app-case-section>
+          <app-case-section anchor="solution" index="03" title="Solution"><p>{{ p.solution }}</p></app-case-section>
+          <app-case-section anchor="architecture" index="04" title="System Architecture">
+            <app-architecture-diagram [numbered]="true" [nodes]="archNodes()" />
+          </app-case-section>
+          <app-case-section anchor="engineering" index="05" title="Engineering"><app-bullet-list [items]="p.engineeringFeatures" /></app-case-section>
+          <app-case-section anchor="challenges" index="06" title="Technical Challenges"><app-bullet-list [items]="p.challenges" /></app-case-section>
+          <app-case-section anchor="decisions" index="07" title="Engineering Decisions"><app-bullet-list [items]="p.decisions" /></app-case-section>
+          <app-case-section anchor="results" index="08" title="Results"><app-bullet-list [items]="p.results" /></app-case-section>
+          <app-case-section anchor="technologies" index="09" title="Technologies">
+            <app-tag-list [items]="p.technologies" />
+            @if (p.aiCapabilities.length) {
+              <h3 style="margin-top: 28px">AI capabilities</h3>
+              <app-tag-list [items]="p.aiCapabilities" />
+            }
+          </app-case-section>
+        </article>
+      </div>
+    </section>
+  }
+</app-api-state>
+
+@if (notFound()) {
+  <app-page-hero eyebrow="Case study" title="Project not found." kicker="This case study does not exist or has been removed." />
+  <app-page-section><a class="btn primary" routerLink="/projects">Back to projects →</a></app-page-section>
+}

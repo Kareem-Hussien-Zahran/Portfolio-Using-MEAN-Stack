@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="section-head" style="margin-bottom: 10px">
+    <div>
+      <h2 style="font-size: 25px">Project repository</h2>
+      <p>Filter by engineering track.</p>
+    </div>
+    <span class="status">{{ count() }} project{{ count() !== 1 ? 's' : '' }}</span>
+  </div>
+  <div class="filters">
+    @for (f of filters(); track f) {
+      <button class="filter" type="button" [class.active]="active() === f" (click)="selected.emit(f)">{{ f }}</button>
+    }
+  </div>
+</div>

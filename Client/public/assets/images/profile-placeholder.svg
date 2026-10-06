@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 940">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff7f6"/><stop offset="1" stop-color="#f2d5d2"/></linearGradient>
+  </defs>
+  <rect width="800" height="940" rx="36" fill="url(#g)"/>
+  <circle cx="610" cy="150" r="220" fill="none" stroke="#b42318" stroke-opacity=".12" stroke-width="2"/>
+  <circle cx="610" cy="150" r="155" fill="none" stroke="#b42318" stroke-opacity=".16" stroke-width="2"/>
+  <path d="M145 770h510" stroke="#b42318" stroke-opacity=".18"/>
+  <text x="400" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="210" font-weight="900" fill="#b42318">K</text>
+  <text x="400" y="535" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="7" fill="#6f6267">SOFTWARE • AI</text>
+  <text x="400" y="810" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="5" fill="#6f6267">PROFILE IMAGE PLACEHOLDER</text>
+</svg>

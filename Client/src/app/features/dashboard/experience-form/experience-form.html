@@ -1,0 +1,23 @@
+<form class="admin-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  @if (error()) {
+    <div class="admin-alert" role="alert">{{ error() }}</div>
+  }
+  <div class="admin-grid-2">
+    <app-admin-field label="Title" controlId="exp-title" [required]="true">
+      <input id="exp-title" formControlName="title" />
+    </app-admin-field>
+    <app-admin-field label="Period" controlId="exp-period" [required]="true" hint="e.g. 2024 — Present">
+      <input id="exp-period" formControlName="period" />
+    </app-admin-field>
+  </div>
+  <app-admin-field label="Organization" controlId="exp-org">
+    <input id="exp-org" formControlName="org" />
+  </app-admin-field>
+  <app-admin-field label="Description" controlId="exp-description">
+    <textarea id="exp-description" rows="4" formControlName="description"></textarea>
+  </app-admin-field>
+  <div class="admin-modal-actions">
+    <button class="btn" type="button" (click)="cancelled.emit()">Cancel</button>
+    <button class="btn primary" type="submit" [disabled]="saving()">{{ saving() ? 'Saving…' : 'Save' }}</button>
+  </div>
+</form>

@@ -1,0 +1,8 @@
+<app-page-section [alt]="true">
+  <app-section-head eyebrow="Engineering capabilities" title="What I work across." />
+  <div class="grid grid-3">
+    @for (item of capabilities; track item.title) {
+      <app-feature-card [title]="item.title" [description]="item.description" />
+    }
+  </div>
+</app-page-section>

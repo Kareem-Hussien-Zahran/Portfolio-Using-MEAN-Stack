@@ -1,0 +1,69 @@
+<app-admin-page-header [title]="isEdit() ? 'Edit project' : 'New project'"
+  [subtitle]="isEdit() ? 'Changes appear on the public site immediately.' : 'Create a new case study.'">
+  <a class="btn" routerLink="/admin/projects">← Back to projects</a>
+</app-admin-page-header>
+
+<app-api-state [loading]="existing.isLoading()" [failed]="loadFailed()" (retry)="existing.reload()">
+  @if (notFound()) {
+    <section class="panel"><p class="admin-empty">This project does not exist. <a routerLink="/admin/projects">Back to projects</a></p></section>
+  } @else {
+    <form class="panel admin-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      @if (formError()) {
+        <div class="admin-alert" role="alert">{{ formError() }}</div>
+      }
+
+      <div class="admin-grid-2">
+        <app-admin-field label="Title" controlId="title" [required]="true" [error]="err('title')">
+          <input id="title" formControlName="title" />
+        </app-admin-field>
+        <app-admin-field label="URL id (slug)" controlId="id" [required]="true"
+          [hint]="isEdit() ? 'The id cannot be changed after creation.' : 'Used in the page URL, e.g. my-project'" [error]="err('id')">
+          <input id="id" formControlName="id" />
+        </app-admin-field>
+        <app-admin-field label="Category" controlId="category" [required]="true" [error]="err('category')">
+          <input id="category" formControlName="category" list="category-options" />
+          <datalist id="category-options">
+            @for (c of categories(); track c) {
+              <option [value]="c"></option>
+            }
+          </datalist>
+        </app-admin-field>
+        <app-admin-field label="Status" controlId="status">
+          <select id="status" formControlName="status">
+            <option>In Progress</option>
+            <option>Completed</option>
+          </select>
+        </app-admin-field>
+      </div>
+
+      <label class="admin-check">
+        <input type="checkbox" formControlName="featured" /> Featured (shown on the home page)
+      </label>
+
+      <app-admin-field label="Short description" controlId="shortDescription" [required]="true" [error]="err('shortDescription')">
+        <textarea id="shortDescription" rows="2" formControlName="shortDescription"></textarea>
+      </app-admin-field>
+      <app-admin-field label="Business problem" controlId="businessProblem">
+        <textarea id="businessProblem" rows="3" formControlName="businessProblem"></textarea>
+      </app-admin-field>
+      <app-admin-field label="Solution" controlId="solution">
+        <textarea id="solution" rows="3" formControlName="solution"></textarea>
+      </app-admin-field>
+
+      <div class="admin-grid-2">
+        @for (f of listFields; track f.key) {
+          <app-admin-field [label]="f.label" [controlId]="f.key" [hint]="f.hint">
+            <app-string-list-field [controlId]="f.key" [formControlName]="f.key" />
+          </app-admin-field>
+        }
+      </div>
+
+      <div class="admin-form-actions">
+        <a class="btn" routerLink="/admin/projects">Cancel</a>
+        <button class="btn primary" type="submit" [disabled]="saving()">
+          {{ saving() ? 'Saving…' : isEdit() ? 'Save changes' : 'Create project' }}
+        </button>
+      </div>
+    </form>
+  }
+</app-api-state>

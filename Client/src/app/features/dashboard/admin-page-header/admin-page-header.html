@@ -1,0 +1,9 @@
+<header class="admin-page-header">
+  <div>
+    <h1>{{ title() }}</h1>
+    @if (subtitle()) {
+      <p class="muted">{{ subtitle() }}</p>
+    }
+  </div>
+  <div class="admin-page-actions"><ng-content /></div>
+</header>

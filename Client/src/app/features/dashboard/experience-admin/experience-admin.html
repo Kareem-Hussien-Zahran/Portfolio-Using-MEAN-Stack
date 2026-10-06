@@ -1,0 +1,36 @@
+<app-admin-page-header title="Experience" subtitle="Training, projects and education shown on the Experience page.">
+  <button class="btn primary" type="button" (click)="editing.set('new')">+ New entry</button>
+</app-admin-page-header>
+
+<section class="panel">
+  <app-api-state [loading]="experience.isLoading()" [failed]="!!experience.error()" (retry)="experience.reload()">
+    @if (items().length) {
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Period</th><th>Title</th><th>Organization</th><th class="right">Actions</th></tr></thead>
+          <tbody>
+            @for (e of items(); track e._id) {
+              <tr>
+                <td>{{ e.period }}</td>
+                <td><strong>{{ e.title }}</strong><br /><span class="muted">{{ e.description }}</span></td>
+                <td>{{ e.org }}</td>
+                <td class="right">
+                  <button class="btn small" type="button" (click)="editing.set(e)">Edit</button>
+                  <button class="btn small danger" type="button" (click)="remove(e)">Delete</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="admin-empty">No experience entries yet.</p>
+    }
+  </app-api-state>
+</section>
+
+@if (editing(); as e) {
+  <app-modal-dialog [title]="e === 'new' ? 'New experience entry' : 'Edit experience entry'" (closed)="editing.set(null)">
+    <app-experience-form [entry]="e === 'new' ? null : e" (saved)="onSaved()" (cancelled)="editing.set(null)" />
+  </app-modal-dialog>
+}

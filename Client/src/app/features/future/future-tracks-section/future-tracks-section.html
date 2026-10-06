@@ -1,0 +1,5 @@
+<app-page-section containerClass="grid grid-3">
+  @for (track of tracks; track track.title) {
+    <app-feature-card level="h2" [future]="true" [number]="track.number" [title]="track.title" [description]="track.description" />
+  }
+</app-page-section>

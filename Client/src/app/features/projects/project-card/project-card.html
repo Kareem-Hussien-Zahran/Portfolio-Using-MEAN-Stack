@@ -1,0 +1,23 @@
+<article class="card project-card" [class.expanded]="expanded()">
+  @if (!imageFailed()) {
+    <div class="project-cover">
+      <img [src]="cover()" [alt]="project().title + ' project visual'" loading="lazy" (error)="imageFailed.set(true)" />
+    </div>
+  }
+  <div>
+    <div class="project-topline">
+      <span class="number">{{ project().category }}</span>
+      <span class="status" [class.active]="project().status === 'In Progress'">{{ project().status }}</span>
+    </div>
+    <h3 class="project-title">
+      <a [routerLink]="['/projects', project().id]" style="color: inherit">{{ project().title }}</a>
+    </h3>
+    <p class="muted">{{ project().shortDescription }}</p>
+    <app-tag-list [items]="project().technologies.slice(0, 4)" />
+  </div>
+  <div class="bottom">
+    <p><strong>Problem:</strong> <span class="muted">{{ project().businessProblem }}</span></p>
+    <app-project-actions [project]="project()" [expanded]="expanded()" (toggled)="expanded.set(!expanded())" />
+    <app-project-details-panel [project]="project()" />
+  </div>
+</article>

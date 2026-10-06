@@ -1,0 +1,29 @@
+<app-admin-page-header title="Skills" subtitle="Skill groups shown on the Skills page.">
+  <button class="btn primary" type="button" (click)="editing.set('new')">+ New group</button>
+</app-admin-page-header>
+
+<app-api-state [loading]="skills.isLoading()" [failed]="!!skills.error()" (retry)="skills.reload()">
+  <div class="admin-cards">
+    @for (g of groups(); track g._id) {
+      <section class="panel">
+        <div class="panel-head">
+          <h2>{{ g.group }}</h2>
+          <span class="muted">{{ g.items.length }} skills</span>
+        </div>
+        <app-tag-list [items]="g.items" />
+        <div class="admin-card-actions">
+          <button class="btn small" type="button" (click)="editing.set(g)">Edit</button>
+          <button class="btn small danger" type="button" (click)="remove(g)">Delete</button>
+        </div>
+      </section>
+    } @empty {
+      <p class="admin-empty">No skill groups yet.</p>
+    }
+  </div>
+</app-api-state>
+
+@if (editing(); as e) {
+  <app-modal-dialog [title]="e === 'new' ? 'New skill group' : 'Edit skill group'" (closed)="editing.set(null)">
+    <app-skill-form [skill]="e === 'new' ? null : e" (saved)="onSaved()" (cancelled)="editing.set(null)" />
+  </app-modal-dialog>
+}

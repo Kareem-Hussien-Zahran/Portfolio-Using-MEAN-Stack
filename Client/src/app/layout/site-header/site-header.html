@@ -1,0 +1,10 @@
+<header class="site-header">
+  <div class="container nav">
+    <app-brand />
+    <app-nav-links [open]="menuOpen()" (navigated)="menuOpen.set(false)" />
+    <div class="actions">
+      <app-theme-toggle />
+      <app-menu-toggle (toggled)="menuOpen.update(v => !v)" />
+    </div>
+  </div>
+</header>

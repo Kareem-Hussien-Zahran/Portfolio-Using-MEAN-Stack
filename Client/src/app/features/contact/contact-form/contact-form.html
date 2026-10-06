@@ -1,0 +1,31 @@
+<div class="card">
+  <form class="form" #formEl [formGroup]="form" (ngSubmit)="submit(formEl)">
+    <div class="field">
+      <label for="name">Name</label>
+      <input id="name" formControlName="name" required autocomplete="name" />
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" required autocomplete="email" />
+    </div>
+    <div class="field">
+      <label for="subject">Subject</label>
+      <input id="subject" formControlName="subject" />
+    </div>
+    <div class="field">
+      <label for="message">Message</label>
+      <textarea id="message" formControlName="message" required></textarea>
+    </div>
+    <button class="btn primary" type="submit" [disabled]="state() === 'sending'">
+      {{ state() === 'sending' ? 'Sending…' : 'Send Message →' }}
+    </button>
+    @switch (state()) {
+      @case ('sent') {
+        <div class="notice" role="status">{{ feedback() }}</div>
+      }
+      @case ('error') {
+        <div class="notice" role="alert">{{ feedback() }}</div>
+      }
+    }
+  </form>
+</div>

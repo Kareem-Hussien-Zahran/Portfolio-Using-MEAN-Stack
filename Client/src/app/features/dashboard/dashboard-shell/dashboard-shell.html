@@ -1,0 +1,14 @@
+<div class="admin">
+  <app-dashboard-sidebar [open]="menuOpen()" (navigate)="menuOpen.set(false)" />
+  @if (menuOpen()) {
+    <div class="admin-scrim" (click)="menuOpen.set(false)"></div>
+  }
+  <div class="admin-main">
+    <app-dashboard-topbar (menu)="menuOpen.update(v => !v)" />
+    <div class="admin-content">
+      <router-outlet />
+    </div>
+  </div>
+</div>
+<app-toast-host />
+<app-confirm-host />

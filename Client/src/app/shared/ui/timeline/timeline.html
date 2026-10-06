@@ -1,0 +1,5 @@
+<div class="timeline" [style.margin-top.px]="marginTop()">
+  @for (item of items(); track item.title) {
+    <app-timeline-item [title]="item.title" [meta]="item.meta" [description]="item.description" />
+  }
+</div>

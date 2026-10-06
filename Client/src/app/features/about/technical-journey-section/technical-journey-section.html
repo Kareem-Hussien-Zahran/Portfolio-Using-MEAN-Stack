@@ -1,0 +1,9 @@
+<app-page-section [alt]="true">
+  <div class="eyebrow">Technical journey</div>
+  <h2>Software → Data → ML → AI Systems</h2>
+  <div class="grid grid-3" style="margin-top: 30px">
+    @for (step of journey; track step.title) {
+      <app-feature-card [number]="step.number" [title]="step.title" [description]="step.description" />
+    }
+  </div>
+</app-page-section>

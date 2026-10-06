@@ -1,0 +1,9 @@
+<div class="card skill-group">
+  <div class="number">{{ number() }}</div>
+  <h3>{{ group().group }}</h3>
+  <div class="skill-cloud">
+    @for (skill of group().items; track skill) {
+      <span class="skill-item"><span class="skill-icon">{{ initials(skill) }}</span>{{ skill }}</span>
+    }
+  </div>
+</div>

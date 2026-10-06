@@ -1,0 +1,42 @@
+<app-admin-page-header title="Projects" subtitle="Case studies shown on the Projects page and the home page.">
+  <a class="btn primary" routerLink="/admin/projects/new">+ New project</a>
+</app-admin-page-header>
+
+<section class="panel">
+  <div class="admin-toolbar">
+    <input class="admin-search" type="search" placeholder="Search by title, category or id…" aria-label="Search projects"
+      [value]="query()" (input)="query.set($any($event.target).value)" />
+    <span class="muted">{{ visible().length }} of {{ all().length }}</span>
+  </div>
+
+  <app-api-state [loading]="projects.isLoading()" [failed]="!!projects.error()" (retry)="projects.reload()">
+    @if (visible().length) {
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr><th>Title</th><th>Category</th><th>Status</th><th>Featured</th><th class="right">Actions</th></tr>
+          </thead>
+          <tbody>
+            @for (p of visible(); track p.id) {
+              <tr>
+                <td><strong>{{ p.title }}</strong><br /><span class="muted">/projects/{{ p.id }}</span></td>
+                <td>{{ p.category }}</td>
+                <td><span class="status" [class.active]="p.status === 'In Progress'">{{ p.status }}</span></td>
+                <td>
+                  <button class="star" type="button" [class.on]="p.featured" [attr.aria-pressed]="p.featured"
+                    [attr.aria-label]="(p.featured ? 'Unfeature ' : 'Feature ') + p.title" (click)="toggleFeatured(p)">★</button>
+                </td>
+                <td class="right">
+                  <a class="btn small" [routerLink]="['/admin/projects', p.id]">Edit</a>
+                  <button class="btn small danger" type="button" (click)="remove(p)">Delete</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="admin-empty">{{ all().length ? 'No projects match your search.' : 'No projects yet. Create your first one.' }}</p>
+    }
+  </app-api-state>
+</section>

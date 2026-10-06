@@ -1,0 +1,11 @@
+<app-page-section [alt]="true" containerClass="grid grid-2">
+  <div class="card">
+    <h2>{{ toolkitTitle() }}</h2>
+    <app-tag-list [items]="tools()" />
+  </div>
+  <div class="card">
+    <h2>{{ caseTitle() }}</h2>
+    <p class="muted">{{ caseText() }}</p>
+    <a class="btn" [routerLink]="['/projects', caseSlug()]">Open case study →</a>
+  </div>
+</app-page-section>

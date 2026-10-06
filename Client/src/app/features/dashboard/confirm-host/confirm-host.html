@@ -1,0 +1,9 @@
+@if (confirm.state(); as s) {
+  <app-modal-dialog title="Please confirm" (closed)="confirm.resolve(false)">
+    <p>{{ s.message }}</p>
+    <div class="admin-modal-actions">
+      <button class="btn" type="button" (click)="confirm.resolve(false)">Cancel</button>
+      <button class="btn danger" type="button" (click)="confirm.resolve(true)">{{ s.confirmLabel }}</button>
+    </div>
+  </app-modal-dialog>
+}

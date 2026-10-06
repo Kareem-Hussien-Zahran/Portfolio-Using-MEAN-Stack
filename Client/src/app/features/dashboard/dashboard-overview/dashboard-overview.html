@@ -1,0 +1,33 @@
+<app-admin-page-header title="Overview" subtitle="A snapshot of everything on your portfolio." />
+
+<div class="admin-stats">
+  <app-stat-card label="Projects" [value]="projects().length" [hint]="featuredCount() + ' featured'" link="/admin/projects" />
+  <app-stat-card label="Skill groups" [value]="skills().length" [hint]="skillCount() + ' skills'" link="/admin/skills" />
+  <app-stat-card label="Experience" [value]="experience().length" hint="timeline entries" link="/admin/experience" />
+  <app-stat-card label="Unread messages" [value]="unread()" [hint]="inbox().length + ' total'" link="/admin/messages" />
+</div>
+
+<div class="admin-two-col">
+  <section class="panel">
+    <div class="panel-head"><h2>Recent messages</h2><a routerLink="/admin/messages">View all →</a></div>
+    @for (m of recent(); track m._id) {
+      <a class="admin-recent" routerLink="/admin/messages">
+        <span class="admin-dot" [class.on]="!m.read" aria-hidden="true"></span>
+        <span><strong>{{ m.name }}</strong> <span class="muted">· {{ m.subject || 'No subject' }}</span></span>
+        <time class="muted">{{ m.createdAt | date: 'MMM d' }}</time>
+      </a>
+    } @empty {
+      <p class="muted">No messages yet.</p>
+    }
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><h2>Quick actions</h2></div>
+    <div class="admin-quick">
+      <a class="btn primary" routerLink="/admin/projects/new">+ New project</a>
+      <a class="btn" routerLink="/admin/skills">Manage skills</a>
+      <a class="btn" routerLink="/admin/experience">Edit experience</a>
+      <a class="btn" routerLink="/admin/profile">Update profile</a>
+    </div>
+  </section>
+</div>

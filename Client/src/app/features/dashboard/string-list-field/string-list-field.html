@@ -1,0 +1,10 @@
+<textarea
+  [id]="controlId()"
+  [rows]="rows()"
+  [placeholder]="placeholder()"
+  [value]="text()"
+  [disabled]="disabled()"
+  (input)="onInput($event)"
+  (blur)="onBlur()"
+></textarea>
+<small class="field-hint">{{ count() }} item{{ count() === 1 ? '' : 's' }}</small>

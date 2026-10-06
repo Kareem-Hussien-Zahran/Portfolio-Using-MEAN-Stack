@@ -1,0 +1,6 @@
+<aside class="toc">
+  <strong>Case study</strong>
+  @for (item of items; track item.id) {
+    <a [routerLink]="[]" [fragment]="item.id">{{ item.label }}</a>
+  }
+</aside>

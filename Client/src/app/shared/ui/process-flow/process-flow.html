@@ -1,0 +1,5 @@
+<div class="flow">
+  @for (item of items(); track item.title) {
+    <app-flow-step [step]="item.number ?? ''" [title]="item.title" [description]="item.description" />
+  }
+</div>

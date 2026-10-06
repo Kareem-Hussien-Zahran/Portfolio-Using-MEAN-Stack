@@ -1,0 +1,12 @@
+<app-page-section [alt]="true">
+  <app-section-head eyebrow="Featured projects" title="Real engineering work.">
+    <a class="btn" routerLink="/projects">View all projects</a>
+  </app-section-head>
+  <app-api-state [loading]="featured.isLoading()" [failed]="!!featured.error()" (retry)="featured.reload()">
+    <div class="grid grid-2">
+      @for (project of items(); track project.id) {
+        <app-project-card [project]="project" />
+      }
+    </div>
+  </app-api-state>
+</app-page-section>

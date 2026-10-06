@@ -1,0 +1,8 @@
+<div>
+  <div class="card">
+    <div class="eyebrow">Connect</div>
+    @for (link of links(); track link.title) {
+      <app-contact-link [href]="link.href" [icon]="link.icon" [title]="link.title" [subtitle]="link.subtitle" />
+    }
+  </div>
+</div>

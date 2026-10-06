@@ -1,0 +1,5 @@
+<app-page-section containerClass="grid grid-3">
+  @for (item of systems; track item.title) {
+    <app-feature-card [number]="item.number" [title]="item.title" [description]="item.description" />
+  }
+</app-page-section>

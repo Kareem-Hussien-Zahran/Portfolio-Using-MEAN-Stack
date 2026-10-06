@@ -1,0 +1,10 @@
+@if (loading()) {
+  <div class="empty" role="status" aria-live="polite">Loading…</div>
+} @else if (failed()) {
+  <div class="empty" role="alert">
+    <p>Could not load the data from the server.</p>
+    <button class="btn" type="button" (click)="retry.emit()">Try again</button>
+  </div>
+} @else {
+  <ng-content />
+}

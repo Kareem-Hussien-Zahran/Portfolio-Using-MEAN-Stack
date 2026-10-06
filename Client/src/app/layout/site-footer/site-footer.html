@@ -1,0 +1,12 @@
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <strong>{{ profile().name }}</strong>
+      <p class="muted">{{ profile().role }}</p>
+    </div>
+    <div class="muted">
+      {{ profile().summary || 'Building intelligent software systems from requirements to production.' }}<br />
+      © {{ year }} {{ profile().name }}
+    </div>
+  </div>
+</footer>

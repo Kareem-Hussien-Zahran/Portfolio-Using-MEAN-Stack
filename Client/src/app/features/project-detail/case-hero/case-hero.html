@@ -1,0 +1,14 @@
+<section class="page-hero">
+  <div class="container case-header">
+    <div>
+      <app-breadcrumb [current]="project().title" />
+      <div class="eyebrow">{{ project().category }} / Case Study</div>
+      <h1>{{ project().title }}</h1>
+      <p class="kicker">{{ project().shortDescription }}</p>
+      <div class="hero-actions">
+        <a class="btn" routerLink="/projects">← All projects</a>
+      </div>
+    </div>
+    <app-case-meta [project]="project()" />
+  </div>
+</section>

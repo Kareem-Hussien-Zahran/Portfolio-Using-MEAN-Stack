@@ -1,0 +1,16 @@
+<app-admin-page-header title="Messages" subtitle="Messages sent through the Contact form.">
+  <div class="admin-tabs" role="tablist">
+    <button type="button" role="tab" [class.active]="filter() === 'all'" (click)="filter.set('all')">All ({{ items().length }})</button>
+    <button type="button" role="tab" [class.active]="filter() === 'unread'" (click)="filter.set('unread')">Unread ({{ unread() }})</button>
+  </div>
+</app-admin-page-header>
+
+<app-api-state [loading]="inbox.isLoading()" [failed]="!!inbox.error()" (retry)="inbox.reload()">
+  <div class="admin-messages">
+    @for (m of visible(); track m._id) {
+      <app-message-item [message]="m" (opened)="setRead(m, true)" (toggleRead)="setRead(m, !m.read)" (remove)="remove(m)" />
+    } @empty {
+      <p class="admin-empty">{{ filter() === 'unread' ? 'No unread messages.' : 'No messages yet.' }}</p>
+    }
+  </div>
+</app-api-state>

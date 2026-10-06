@@ -1,0 +1,9 @@
+<div class="field" [class.has-error]="!!error()">
+  <label [attr.for]="controlId()">{{ label() }}@if (required()) {<span class="req"> *</span>}</label>
+  <ng-content />
+  @if (error()) {
+    <small class="field-error">{{ error() }}</small>
+  } @else if (hint()) {
+    <small class="field-hint">{{ hint() }}</small>
+  }
+</div>

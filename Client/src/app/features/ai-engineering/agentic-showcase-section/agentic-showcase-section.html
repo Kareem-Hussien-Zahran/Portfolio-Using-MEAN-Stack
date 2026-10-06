@@ -1,0 +1,8 @@
+<app-page-section [alt]="true">
+  <app-section-head eyebrow="Agentic AI showcase" title="System concepts I can build." />
+  <div class="grid grid-3">
+    @for (agent of agents; track agent.title) {
+      <app-feature-card [title]="agent.title" [description]="agent.description" />
+    }
+  </div>
+</app-page-section>

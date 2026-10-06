@@ -1,0 +1,5 @@
+<app-page-section containerClass="grid grid-2">
+  @for (pillar of pillars; track pillar.title) {
+    <app-feature-card level="h2" [number]="pillar.number" [title]="pillar.title" [description]="pillar.description" />
+  }
+</app-page-section>

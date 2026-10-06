@@ -1,0 +1,23 @@
+<app-admin-page-header title="Profile" subtitle="Your name, role and contact links – used in the footer and on the Contact page." />
+
+<app-api-state [loading]="profile.isLoading()" [failed]="!!profile.error()" (retry)="profile.reload()">
+  <form class="panel admin-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    @if (error()) {
+      <div class="admin-alert" role="alert">{{ error() }}</div>
+    }
+    <div class="admin-grid-2">
+      <app-admin-field label="Name" controlId="p-name" [required]="true"><input id="p-name" formControlName="name" /></app-admin-field>
+      <app-admin-field label="Role" controlId="p-role"><input id="p-role" formControlName="role" /></app-admin-field>
+      <app-admin-field label="Email" controlId="p-email"><input id="p-email" type="email" formControlName="email" /></app-admin-field>
+      <app-admin-field label="LinkedIn URL" controlId="p-linkedin"><input id="p-linkedin" formControlName="linkedin" /></app-admin-field>
+      <app-admin-field label="GitHub URL" controlId="p-github"><input id="p-github" formControlName="github" /></app-admin-field>
+      <app-admin-field label="Resume URL" controlId="p-resume"><input id="p-resume" formControlName="resume" /></app-admin-field>
+    </div>
+    <app-admin-field label="Summary" controlId="p-summary" hint="Shown in the site footer">
+      <textarea id="p-summary" rows="3" formControlName="summary"></textarea>
+    </app-admin-field>
+    <div class="admin-form-actions">
+      <button class="btn primary" type="submit" [disabled]="saving()">{{ saving() ? 'Saving…' : 'Save profile' }}</button>
+    </div>
+  </form>
+</app-api-state>

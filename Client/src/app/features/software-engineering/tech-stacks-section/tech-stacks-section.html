@@ -1,0 +1,7 @@
+<app-page-section containerClass="grid grid-2">
+  @for (stack of stacks; track stack.title) {
+    <app-feature-card level="h2" [number]="stack.number" [title]="stack.title" [description]="stack.description">
+      <app-tag-list [items]="stack.tags" />
+    </app-feature-card>
+  }
+</app-page-section>

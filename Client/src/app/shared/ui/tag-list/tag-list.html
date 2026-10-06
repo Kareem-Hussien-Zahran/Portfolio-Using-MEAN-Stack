@@ -1,0 +1,5 @@
+<div [class]="cloud() ? 'skill-cloud' : 'tags'">
+  @for (tag of items(); track tag) {
+    <span class="tag">{{ tag }}</span>
+  }
+</div>

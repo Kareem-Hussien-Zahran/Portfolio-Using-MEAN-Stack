@@ -1,0 +1,22 @@
+<app-page-hero
+  eyebrow="Engineering case studies"
+  title="Projects built to solve problems."
+  kicker="Real personal, academic, and training projects. Each case study focuses on the problem, requirements, architecture, engineering decisions, and implementation—not just a repository link."
+/>
+<app-page-section>
+  <app-project-filters
+    [filters]="filters()"
+    [active]="active()"
+    [count]="visible().length"
+    (selected)="active.set($event)"
+  />
+  <app-api-state [loading]="projects.isLoading()" [failed]="!!projects.error()" (retry)="projects.reload()">
+    <div class="grid grid-2" style="margin-top: 18px">
+      @for (project of visible(); track project.id) {
+        <app-project-card [project]="project" />
+      } @empty {
+        <div class="empty" style="grid-column: 1 / -1">No case studies match this filter.</div>
+      }
+    </div>
+  </app-api-state>
+</app-page-section>

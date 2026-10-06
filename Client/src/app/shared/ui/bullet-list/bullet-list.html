@@ -1,0 +1,7 @@
+@if (items().length) {
+  <ul class="list">
+    @for (item of items(); track $index) {
+      <li>{{ item }}</li>
+    }
+  </ul>
+}

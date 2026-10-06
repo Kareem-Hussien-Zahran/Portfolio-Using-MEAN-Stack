@@ -1,0 +1,13 @@
+<a
+  class="contact-link"
+  [href]="href()"
+  [attr.target]="external() ? '_blank' : null"
+  [attr.rel]="external() ? 'noreferrer' : null"
+  (click)="onClick($event)"
+>
+  <span class="contact-main">
+    <span class="contact-icon">{{ icon() }}</span>
+    <span><strong>{{ title() }}</strong><small>{{ subtitle() }}</small></span>
+  </span>
+  <span class="contact-arrow">↗</span>
+</a>

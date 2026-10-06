@@ -1,0 +1,14 @@
+@if (activeNav.active() !== 'home') {
+  <div class="breadcrumb">
+    <a class="crumb-avatar" routerLink="/" aria-label="Back to Home">
+      <img src="assets/images/profile.jpg" alt="Kareem" />
+    </a>
+    <a routerLink="/">Home</a>
+    <span class="sep">/</span>
+    <a [routerLink]="section().path">{{ section().label }}</a>
+    @if (current()) {
+      <span class="sep">/</span>
+      <span class="current">{{ current() }}</span>
+    }
+  </div>
+}

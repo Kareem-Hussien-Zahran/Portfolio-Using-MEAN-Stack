@@ -1,0 +1,12 @@
+<div class="project-actions">
+  <a class="project-link" [routerLink]="['/projects', project().id]">
+    <span class="project-link-icon"><app-icon name="demo" /></span>
+    <span>Case Study</span>
+    <span class="project-link-arrow"><app-icon name="arrow" /></span>
+  </a>
+  <button class="project-link details-toggle" type="button" [attr.aria-expanded]="expanded()" (click)="toggled.emit()">
+    <span class="project-link-icon"><app-icon name="details" /></span>
+    <span>{{ expanded() ? 'Hide Details −' : 'Project Details +' }}</span>
+    <span class="project-link-arrow"><app-icon name="arrow" /></span>
+  </button>
+</div>

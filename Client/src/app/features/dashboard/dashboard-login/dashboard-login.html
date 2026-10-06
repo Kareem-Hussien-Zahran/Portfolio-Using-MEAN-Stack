@@ -1,0 +1,16 @@
+<div class="admin-login">
+  <form class="admin-login-box" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="eyebrow">Dashboard</div>
+    <h1>Admin sign in</h1>
+    <p class="muted">Manage your projects, skills, experience, profile and messages.</p>
+    <div class="field">
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" autocomplete="current-password" />
+    </div>
+    @if (error()) {
+      <div class="admin-alert" role="alert">{{ error() }}</div>
+    }
+    <button class="btn primary" type="submit" [disabled]="busy()">{{ busy() ? 'Signing in…' : 'Sign in →' }}</button>
+    <a class="admin-back" routerLink="/">← Back to site</a>
+  </form>
+</div>

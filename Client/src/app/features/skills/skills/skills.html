@@ -1,0 +1,14 @@
+<app-page-hero
+  eyebrow="Skills / Tech Stack"
+  title="Competencies organized by engineering domain."
+  kicker="A practical technology map across software engineering, AI systems, machine learning, and data."
+/>
+<app-page-section>
+  <app-api-state [loading]="skills.isLoading()" [failed]="!!skills.error()" (retry)="skills.reload()">
+    <div class="grid grid-2">
+      @for (group of groups(); track group._id; let i = $index) {
+        <app-skill-group [group]="group" [number]="pad(i + 1)" />
+      }
+    </div>
+  </app-api-state>
+</app-page-section>

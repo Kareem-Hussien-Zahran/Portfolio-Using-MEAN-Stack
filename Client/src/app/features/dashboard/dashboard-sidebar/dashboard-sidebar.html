@@ -1,0 +1,17 @@
+<aside class="admin-sidebar" [class.open]="open()">
+  <a class="admin-brand" routerLink="/admin">
+    <span class="brand-avatar"><img src="assets/images/profile.jpg" alt="" /></span>
+    <span class="brand-copy">Dashboard<small>Content manager</small></span>
+  </a>
+  <nav class="admin-nav" aria-label="Dashboard">
+    @for (item of items; track item.path) {
+      <a [routerLink]="item.path" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: item.exact }" (click)="navigate.emit()">
+        <span class="admin-nav-icon" aria-hidden="true">{{ item.icon }}</span>{{ item.label }}
+      </a>
+    }
+  </nav>
+  <div class="admin-side-foot">
+    <a routerLink="/" target="_blank">View site ↗</a>
+    <button type="button" (click)="auth.logout()">Sign out</button>
+  </div>
+</aside>

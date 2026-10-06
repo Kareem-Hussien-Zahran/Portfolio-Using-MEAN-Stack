@@ -1,0 +1,24 @@
+@if (variant() === 'flow') {
+  <div class="architecture-card" [style.margin-top.px]="marginTop()">
+    <div class="arch-flow">
+      <ng-container [ngTemplateOutlet]="nodeList" />
+    </div>
+  </div>
+} @else {
+  <div class="arch-diagram" [style.margin-top.px]="marginTop()">
+    <ng-container [ngTemplateOutlet]="nodeList" />
+  </div>
+}
+
+<ng-template #nodeList>
+  @for (node of nodes(); track $index) {
+    <div class="node" [class.ai]="node.ai">
+      @if (numbered()) {
+        <span>{{ pad($index + 1) }}</span>
+      }{{ node.label }}
+    </div>
+    @if (!$last) {
+      <div class="arrow">↓</div>
+    }
+  }
+</ng-template>

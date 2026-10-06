@@ -1,0 +1,5 @@
+<nav class="navlinks" [class.open]="open()">
+  @for (item of items; track item.key) {
+    <a [routerLink]="item.path" [class.active]="activeNav.active() === item.key" (click)="navigated.emit()">{{ item.label }}</a>
+  }
+</nav>

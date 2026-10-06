@@ -1,0 +1,14 @@
+<div class="card" [class.future]="future()">
+  @if (number()) {
+    <div class="number">{{ number() }}</div>
+  }
+  @if (level() === 'h2') {
+    <h2>{{ title() }}</h2>
+  } @else {
+    <h3>{{ title() }}</h3>
+  }
+  @if (description()) {
+    <p class="muted">{{ description() }}</p>
+  }
+  <ng-content />
+</div>

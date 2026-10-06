@@ -1,0 +1,10 @@
+<div class="details-panel">
+  <h4>Engineering Snapshot</h4>
+  <p>{{ project().solution }}</p>
+  <h4>Architecture</h4>
+  <p>{{ project().architecture.join(' → ') }}</p>
+  @if (project().aiCapabilities.length) {
+    <h4>AI Capabilities</h4>
+    <app-tag-list [items]="project().aiCapabilities" />
+  }
+</div>

@@ -1,0 +1,18 @@
+<article class="admin-message" [class.unread]="!message().read">
+  <button class="admin-message-head" type="button" [attr.aria-expanded]="open()" (click)="toggle()">
+    <span class="admin-dot" [class.on]="!message().read" aria-hidden="true"></span>
+    <span class="admin-message-who"><strong>{{ message().name }}</strong> <span class="muted">&lt;{{ message().email }}&gt;</span></span>
+    <span class="admin-message-subject">{{ message().subject || 'No subject' }}</span>
+    <time class="muted">{{ message().createdAt | date: 'MMM d, y, h:mm a' }}</time>
+  </button>
+  @if (open()) {
+    <div class="admin-message-body">
+      <p>{{ message().message }}</p>
+      <div class="admin-card-actions">
+        <a class="btn small primary" [href]="reply()">Reply by email</a>
+        <button class="btn small" type="button" (click)="toggleRead.emit()">Mark as {{ message().read ? 'unread' : 'read' }}</button>
+        <button class="btn small danger" type="button" (click)="remove.emit()">Delete</button>
+      </div>
+    </div>
+  }
+</article>

@@ -1,0 +1,15 @@
+<form class="admin-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  @if (error()) {
+    <div class="admin-alert" role="alert">{{ error() }}</div>
+  }
+  <app-admin-field label="Group name" controlId="group" [required]="true">
+    <input id="group" formControlName="group" />
+  </app-admin-field>
+  <app-admin-field label="Skills" controlId="items" hint="One skill per line">
+    <app-string-list-field controlId="items" formControlName="items" [rows]="7" />
+  </app-admin-field>
+  <div class="admin-modal-actions">
+    <button class="btn" type="button" (click)="cancelled.emit()">Cancel</button>
+    <button class="btn primary" type="submit" [disabled]="saving()">{{ saving() ? 'Saving…' : 'Save' }}</button>
+  </div>
+</form>
